@@ -1,0 +1,39 @@
+<div class="container-fluid px-5 pt-3 pt-md-5">
+  <table class="table  table-striped table-bordered">
+    <thead>
+      <tr class="text-uppercase small thead-light border-bottom">
+        <th>
+          <span>Id #</span>
+        </th>
+        <th>
+          <span>Amount</span>
+        </th>
+        <th>
+          <span>Date</span>
+        </th>
+        <th>
+          <span>Action</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="align-middle lead" *ngFor="let invoiceRecord of invoices">
+        <td>{{ invoiceRecord.invoiceNumber }}</td>
+        <td>{{ invoiceRecord.invoiceAmount }}</td>
+        <td class="border-bottom align-middle lead fonts-dark">
+          {{ invoiceRecord.InvoiceDate | date: 'd MMMM y' }}
+        </td>
+        <td>
+          <div>
+              <i class="fa fa fa-edit action__icon" [id]="invoiceRecord.id" (click)="onEdit($event)"></i>
+              <i class="fa fa fa-trash action__icon ml-3" [id]="invoiceRecord.id" (click)="onDelete($event)"></i>
+          </div>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-right">
+    <span>Total : {{invoiceService.invoices?.total}}</span>
+  </div>
+</div>

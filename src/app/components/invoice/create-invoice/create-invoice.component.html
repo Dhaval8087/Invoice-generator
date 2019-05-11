@@ -1,0 +1,72 @@
+<form [formGroup]="invoiceForm">
+  <div class="container-fluid px-5 pt-3 pt-md-5">
+    <h2 class="text-capitalize font-weight-bold text-dark pb-4">
+      Create Invoice
+    </h2>
+    <div class="border-bottom p-3">
+      <div class="row form-group align-items-center mb-4">
+        <label class="col-12 col-md-2 control-label" i18n="@@label_city">Invoice Amount</label>
+        <div class="col-4 col-md-6 col-12 boxed">
+          <div class="row pr-2">
+            <input class="form-control text-capitalize" placeholder="enter amount" type="text" name="invoiceAmount"
+              formControlName="invoiceAmount" [ngClass]="{
+              'is-invalid':
+              invoiceForm.get('invoiceAmount').touched &&
+                (!!invoiceForm.get('invoiceAmount').errors?.required ||
+                  !!invoiceForm.get('invoiceAmount').errors?.pattern)
+            }" />
+          </div>
+          <span *ngIf="(!!invoiceForm.get('invoiceAmount').errors?.pattern) && invoiceForm.get('invoiceAmount').touched"
+            class="text-danger form-check-label ml-n3">
+            Amount is invalid.
+          </span>
+
+          <span
+            *ngIf="(!!invoiceForm.get('invoiceAmount').errors?.required) && invoiceForm.get('invoiceAmount').touched"
+            class="text-danger form-check-label ml-n3">
+            Amount is required.
+          </span>
+        </div>
+      </div>
+      <div class="row form-group align-items-center mb-4">
+        <label class="col-12 col-md-2 control-label" i18n="@@label_city">Invoice Date</label>
+        <div class="col-4 col-md-6 col-12 boxed">
+          <div class="row pr-2">
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" name="invoiceDate" formControlName="invoiceDate"
+                  ngbDatepicker #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar fa fa-calendar" (click)="d.toggle()"
+                    type="button"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-group align-items-center mb-4">
+        <button class="btn-add-event btn btn-primary d-flex align-items-center border-0 py-2 px-3" type="button"
+          [disabled]="invoiceForm.invalid" (click)="addInvoice()">
+          <i class="fa fa-plus-circle py-2 mr-2" aria-hidden="true"></i>
+          <span class="d-none d-lg-inline pl-2">{{invoiceLabel}}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="px-5 pt-3 pt-md-5">
+    <div class="card__container">
+        <div class="card inv__card"  *ngFor="let item of invoices">
+            <div class="card-body">
+              <h5 class="card-title">Invoice #: {{item.invoiceNumber}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{item.invoiceAmount}}</h6>
+            </div>
+          </div>
+    </div>
+
+  </div>
+  <footer class="text-right bg-dark py-3 px-4 fixed-bottom footer-app">
+    <button class="btn btn-light border-0 py-2 px-3 mr-3 footer-app__cancelBtn" type="button">Cancel</button>
+    <button class="btn btn-primary py-2 px-3 footer-app__saveBtn" type="button" (click)="onSave()">Save</button>
+  </footer>
+</form>

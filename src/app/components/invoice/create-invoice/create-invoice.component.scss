@@ -1,0 +1,29 @@
+.border-bottom {
+  border-bottom: 1px solid #dee2e6 !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+.footer-app {
+  button {
+    height: 50px;
+  }
+  &__cancelBtn {
+    width: 130px;
+  }
+
+  &__saveBtn {
+    width: 160px;
+  }
+}
+.card {
+  width: 200px !important;
+}
+.inv__card {
+  margin-left: 5px;
+}
+.card__container {
+  display: flex;
+  flex-direction: row;
+}
