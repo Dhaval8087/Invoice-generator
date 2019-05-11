@@ -20,6 +20,7 @@ export class CreateInvoiceComponent implements OnInit {
   invoiceNumber = 1;
   editId = 0;
   invoiceLabel = 'Add invoice';
+  title = 'Create Invoice';
   invoiceDetails: Invoice;
   constructor(
     private fb: FormBuilder,

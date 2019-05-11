@@ -27,6 +27,8 @@ export class ListInvoiceComponent implements OnInit {
     const modalRef = this.modelService.open(CreateInvoiceComponent, { centered: true, size: 'lg' });
     modalRef.componentInstance.editId = $event.currentTarget.id;
     modalRef.componentInstance.invoiceLabel = 'Update invoice';
+    modalRef.componentInstance.title = 'Edit invoice';
+
   }
   onDelete($event) {
    this.invoiceService.deleteInvoiceDetails($event.currentTarget.id);
